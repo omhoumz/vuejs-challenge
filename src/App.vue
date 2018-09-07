@@ -18,6 +18,7 @@ export default {
 <style lang="sass">
 body
   margin: 0
+  font-family: 'Cairo', sans-serif
 
 *
   box-sizing: border-box

@@ -70,4 +70,3 @@ export default {
       span
         opacity: 1
 </style>
-
