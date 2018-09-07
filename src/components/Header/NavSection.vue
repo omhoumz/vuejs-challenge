@@ -47,6 +47,10 @@ export default {
   overflow: hidden
   overflow-x: scroll
 
+  &::-webkit-scrollbar
+    width: 0
+    height: 0
+
   a
     margin-left: 0.3rem
     color: white
@@ -63,8 +67,8 @@ export default {
 
     span
       font-size: 1rem
-      font-family: 'Cairo', sans-serif
       opacity: .4
+      transition: all .2s
 
     &:hover, &:active, &:focus
       span
