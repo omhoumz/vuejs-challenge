@@ -1,16 +1,21 @@
 <template>
-  <div class="home-posts">
-    <PostsList />
-    <button class="more">+</button>
+  <div>
+    <Header />
+    <div class="home-posts">
+      <PostsList />
+      <button class="more">+</button>
+    </div>
   </div>
 </template>
 
 <script>
 import PostsList from '@/components/Posts/PostsList.vue'
+import Header from '@/components/Header'
 
 export default {
   components: {
-    PostsList
+    PostsList,
+    Header
   }
 }
 </script>
