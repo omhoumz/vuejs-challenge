@@ -1,7 +1,9 @@
 <template>
   <div>
     <HeaderPost />
-    <div class="post">
+    <div class="post"
+      v-touch:swipe.left="swipeLeftHandler"
+      v-touch:swipe.right="swipeRightHandler">
       <FeaturedImage />
       <h1>الحكومة: لم يتم إعفاء "سنترال دانون" من الضريبة.. وهذه الشركات الصناعية المعنية</h1>
       <span class="posted-date">12:45 - 12/03/2015</span>
@@ -35,6 +37,14 @@ export default {
     FeaturedImage,
     SocialShares,
     HeaderPost
+  },
+  methods: {
+    swipeLeftHandler () {
+      console.log('Left')
+    },
+    swipeRightHandler () {
+      console.log('Right')
+    }
   }
 }
 </script>
