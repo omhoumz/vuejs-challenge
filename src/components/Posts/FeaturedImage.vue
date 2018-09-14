@@ -1,15 +1,22 @@
 <template>
   <div class="featured-image">
-    <img :src="`${baseURL}img/logos/logo-grey.png`" alt="">
-    <span>سياسة</span>
+    <div>
+      <img :src="this.imageURL ? this.imageURL : `${process.env.BASE_URL}img/logos/logo-grey.png`" alt="">
+    </div>
+    <span>{{ category }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      baseURL: process.env.BASE_URL
+  props: {
+    imageURL: {
+      type: String,
+      required: false
+    },
+    category: {
+      type: String,
+      required: false
     }
   }
 }
@@ -19,12 +26,17 @@ export default {
   .featured-image
     background-color: #e7e7e7
     position: relative
-    height: 260px
-    display: flex
     margin-bottom: 1.2rem
 
-    img
-      margin: auto
+    div
+      height: 260px
+      display: flex
+      overflow: hidden
+      justify-content: center
+
+      img
+        margin: auto
+        max-height: 100%
 
     span
       position: absolute

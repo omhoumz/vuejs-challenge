@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div class="home-posts">
-      <PostsList />
+      <PostsList :posts="posts" />
       <button class="more">+</button>
     </div>
   </div>
@@ -16,6 +16,26 @@ export default {
   components: {
     PostsList,
     Header
+  },
+  data () {
+    return {
+      posts: []
+    }
+  },
+  beforeMount: function () {
+    fetch('http://femme.nextmedia.ma/api/get_recent_posts/')
+      .then(data => data.json())
+      .then(response => {
+        this.posts = response.posts.map(post => ({
+          id: post.id,
+          postLink: '/' + post.id,
+          date: post.date,
+          title: post.title,
+          imageURL: post.thumbnail_images.medium_large.url,
+          category: post.categories[0] ? post.categories[0].title : ''
+        }))
+      })
+      .catch(error => console.error(error))
   }
 }
 </script>
@@ -36,4 +56,11 @@ export default {
     color: #bebebe
     font-weight: bold
     font-size: 2rem
+    outline-color: transparent
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.13)
+    transition: box-shadow .1.8s cubic-bezier(0.18, 0.89, 0.32, 1.28)
+
+    &:focus
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.13)
+
 </style>

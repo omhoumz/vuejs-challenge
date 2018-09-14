@@ -4,7 +4,9 @@
     <router-link to="/">
       <img class="logo" :src="`${baseUrl}img/logos/logo-icon.png`" alt="next media">
     </router-link>
-    <img class="menu-icon" :src="`${baseUrl}img/left-chefron-grey.png`" alt="Menu icon">
+    <router-link to="/">
+      <img class="menu-icon" :src="`${baseUrl}img/left-chefron-grey.png`" alt="Menu icon">
+    </router-link>
   </div>
 </template>
 

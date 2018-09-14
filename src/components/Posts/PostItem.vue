@@ -1,8 +1,10 @@
 <template>
   <div class="post-list-item">
-    <FeaturedImage />
-    <h3>مجلس النواب يحسم في جدل تقاعد البرلمانيين الأسبوع المقبل</h3>
-    <span class="posted-date">12 يونيو 2018 </span>
+    <a :href="postLink">
+      <FeaturedImage :imageURL="imageURL" :category="category" />
+      <h3 v-html="title" ></h3>
+      <span class="posted-date">{{ date }}</span>
+    </a>
   </div>
 </template>
 
@@ -12,6 +14,28 @@ import FeaturedImage from '@/components/Posts/FeaturedImage.vue'
 export default {
   components: {
     FeaturedImage
+  },
+  props: {
+    date: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    postLink: {
+      type: String,
+      required: true
+    },
+    imageURL: {
+      type: String,
+      required: false
+    },
+    category: {
+      type: String,
+      required: false
+    }
   }
 }
 </script>
@@ -19,6 +43,10 @@ export default {
 <style lang="sass" scoped>
 .post-list-item
   margin-bottom: 2rem
+
+  a
+    text-decoration: none
+    color: #010101
 
   h3
     margin: 0
