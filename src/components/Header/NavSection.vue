@@ -1,28 +1,16 @@
 <template>
   <div class="nav">
     <router-link to="/">
-      <img class="home-icon" :src="`${baseUrl}img/home-icon.png`" alt="Home icon">
+      <img class="home-icon"
+        :src="`${baseUrl}img/home-icon.png`"
+        alt="Home icon">
     </router-link>
-    <router-link to="/">
-      <span>سياسة</span>
-    </router-link>
-    <router-link to="/">
-      <span>مجتمع</span>
-    </router-link>
-    <router-link to="/">
-      <span>اقتصاد</span>
-    </router-link>
-    <router-link to="/">
-      <span>رياضة</span>
-    </router-link>
-    <router-link to="/">
-      <span>ثقافة</span>
-    </router-link>
-    <router-link to="/">
-      <span>مجتمع</span>
-    </router-link>
-    <router-link to="/">
-      <span>اقتصاد</span>
+    <router-link
+      v-for="category in categories"
+      :key="category.id"
+      :id="category.id"
+      :to="`/category/${category.id}`">
+      <span>{{ category.label }}</span>
     </router-link>
   </div>
 </template>
@@ -31,8 +19,20 @@
 export default {
   data () {
     return {
-      baseUrl: process.env.BASE_URL
+      baseUrl: process.env.BASE_URL,
+      categories: []
     }
+  },
+  beforeMount: function () {
+    fetch('http://femme.nextmedia.ma/api/menus/get_menu/?menu_id=7')
+      .then(data => data.json())
+      .then(response => {
+        this.categories = response.menu.output.map(menu => ({
+          id: menu.id,
+          label: menu.label
+        }))
+      })
+      .catch(error => console.error(error))
   }
 }
 </script>
@@ -64,11 +64,19 @@ export default {
 
       img
         height: 20px
+        opacity: .4
+
+    &.router-link-exact-active
+      span
+        opacity: 1
+      img
+        opacity: 1
 
     span
       font-size: 1rem
       opacity: .4
       transition: all .2s
+      white-space: nowrap
 
     &:hover, &:active, &:focus
       span

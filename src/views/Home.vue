@@ -28,7 +28,7 @@ export default {
       .then(response => {
         this.posts = response.posts.map(post => ({
           id: post.id,
-          postLink: '/' + post.id,
+          postLink: '/post/' + post.id,
           date: post.date,
           title: post.title,
           imageURL: post.thumbnail_images.medium_large.url,

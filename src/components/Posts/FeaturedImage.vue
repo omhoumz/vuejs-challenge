@@ -1,7 +1,7 @@
 <template>
   <div class="featured-image">
     <div>
-      <img :src="this.imageURL ? this.imageURL : `${process.env.BASE_URL}img/logos/logo-grey.png`" alt="">
+      <img :src="this.imageURL ? this.imageURL : `${this.baseURL}img/logos/logo-grey.png`" alt="">
     </div>
     <span>{{ category }}</span>
   </div>
@@ -9,6 +9,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      baseURL: process.env.BASE_URL
+    }
+  },
   props: {
     imageURL: {
       type: String,
