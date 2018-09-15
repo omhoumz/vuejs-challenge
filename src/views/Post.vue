@@ -1,7 +1,7 @@
 <template>
   <div>
-    <HeaderPost />
-    <div class="post"
+    <HeaderPost :postsArray="postsArray" />
+    <div :class="[visible ? 'fade-in' : 'fade-out', 'post']"
       v-touch:swipe.left="swipeLeftHandler"
       v-touch:swipe.right="swipeRightHandler">
 
@@ -35,10 +35,16 @@ export default {
       title: '',
       date: '',
       category: '',
-      imageURL: ''
+      imageURL: '',
+      visible: true,
+      previousURL: '',
+      nextURL: '',
+      currentURL: '',
+      postsArray: []
     }
   },
   beforeRouteUpdate (to, from, next) {
+    this.visible = false
     this.updatePostData(to.params.id)
     next()
   },
@@ -47,14 +53,25 @@ export default {
   },
   methods: {
     swipeLeftHandler () {
-      // console.log(this.previousURL)
-      this.previousURL && this.$router.push({ name: 'post', params: { id: this.previousURL } })
+      if (
+        this.previousURL &&
+        this.currentURL !== this.postsArray[this.postsArray.length - 1].id
+      ) {
+        this.visible = false
+        this.$router.push({ name: 'post', params: { id: this.previousURL } })
+      }
     },
     swipeRightHandler () {
-      // console.log(this.nextURL)
-      this.nextURL && this.$router.push({ name: 'post', params: { id: this.nextURL } })
+      if (
+        this.nextURL &&
+        this.currentURL !== this.postsArray[0].id
+      ) {
+        this.visible = false
+        this.$router.push({ name: 'post', params: { id: this.nextURL } })
+      }
     },
     updatePostData (id) {
+      this.currentURL = id
       fetch('http://femme.nextmedia.ma/api/get_post/?id=' + id)
         .then(data => data.json())
         .then(response => {
@@ -64,8 +81,22 @@ export default {
           this.date = post.date
           this.category = post.categories[0] ? post.categories[0].title : ''
           this.imageURL = post.thumbnail_images.medium_large.url
-          this.nextURL = response.next_url && response.next_url.split('/').pop()
-          this.previousURL = response.previous_url && response.previous_url.split('/').pop()
+
+          this.nextURL = response.next_url && parseInt(response.next_url.split('/').pop())
+          this.previousURL = response.previous_url && parseInt(response.previous_url.split('/').pop())
+          this.visible = true
+
+          !this.postsArray.length && this.updatePostsArray()
+        })
+        .catch(error => console.error(error))
+    },
+    updatePostsArray () {
+      fetch('http://femme.nextmedia.ma/api/get_recent_posts/')
+        .then(data => data.json())
+        .then(response => {
+          this.postsArray = response.posts.map(post => ({
+            id: post.id
+          }))
         })
         .catch(error => console.error(error))
     }
@@ -76,6 +107,13 @@ export default {
 <style lang="sass" scoped>
 .post
   padding: 1.2rem
+  opacity: 0
+
+  &.fade-in
+    animation: .3s ease-in-out forwards fade-in
+
+  &.fade-out
+    animation: .3s ease-in-out forwards fade-out
 
   h1
     margin: 0
@@ -95,6 +133,18 @@ export default {
 
       iframe
         width: 100vw
+
+@keyframes fade-in
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+@keyframes fade-out
+  0%
+    opacity: 1
+  100%
+    opacity: 0
 </style>
 
 <style lang="sass">

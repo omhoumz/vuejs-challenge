@@ -40,8 +40,9 @@ export default {
       justify-content: center
 
       img
-        margin: auto
-        max-height: 100%
+        width: 100%
+        object-fit: cover
+        object-position: 50% 50%;
 
     span
       position: absolute

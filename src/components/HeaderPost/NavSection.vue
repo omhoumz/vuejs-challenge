@@ -1,18 +1,22 @@
 <template>
   <div class="nav">
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot active"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+    <router-link
+      v-for="postLink in postsArray.slice().reverse()"
+      :key="postLink.id"
+      :to="`/post/${postLink.id}`" >
+      <div class="dot"></div>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    postsArray: {
+      type: Array,
+      required: true
+    }
+  }
 }
 </script>
 
@@ -25,14 +29,19 @@ export default {
   justify-content: center
   align-items: center
 
-  .dot
-    background-color: #fff
-    height: 11px
-    width: 11px
-    border-radius: 50%
-    margin: 0 0.2rem
-    opacity: .25
+  a
+    text-decoration: none
 
-    &.active
-      opacity: 1
+    .dot
+      background-color: #fff
+      height: 11px
+      width: 11px
+      border-radius: 50%
+      margin: 0 0.2rem
+      opacity: .25
+      transition: opacity .2s ease
+
+    &.router-link-exact-active
+      .dot
+        opacity: 1
 </style>
