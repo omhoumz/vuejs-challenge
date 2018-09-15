@@ -1,16 +1,16 @@
 # VueJS Challenge
 
-## Project setup
+## Clone project and navigate to it
 ```
-npm install
+git clone https://github.com/omhoumz/vuejs-challenge.git && cd vuejs-challenge
+```
+
+## Install packages
+```
+npm i
 ```
 
 ### Compiles and hot-reloads for development
 ```
 npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
 ```
