@@ -27,6 +27,9 @@ export default {
   align-items: center
   border-bottom: 1px solid rgba(204, 204, 204, 0.54)
 
+  height: 71px
+  margin-top: 35px
+
   img
     margin: auto
 

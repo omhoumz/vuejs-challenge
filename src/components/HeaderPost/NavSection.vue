@@ -28,6 +28,13 @@ export default {
   flex-direction: row
   justify-content: center
   align-items: center
+  
+  height: 35px
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  z-index: 999999
 
   a
     text-decoration: none

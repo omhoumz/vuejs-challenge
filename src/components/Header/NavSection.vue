@@ -43,7 +43,6 @@ export default {
   flex-direction: row
   justify-content: end
   align-items: stretch
-  width: 100vw
   overflow: hidden
   overflow-x: scroll
 
@@ -55,7 +54,7 @@ export default {
     margin-left: 0.3rem
     color: white
     text-decoration: none
-    padding: 0 1rem
+    padding: 0 .5rem
     display: flex
     align-items: center
 

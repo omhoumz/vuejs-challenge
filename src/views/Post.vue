@@ -125,7 +125,7 @@ export default {
     font-size: 0.8rem
 
   .post-content
-    margin: 2.2rem 0
+    margin: 1rem 0 2.2rem 0
 
     p
       width: 100vw

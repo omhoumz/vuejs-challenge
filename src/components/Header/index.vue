@@ -28,4 +28,8 @@ header
   background: linear-gradient(47deg, #662d91, #ae388f)
   display: grid
   grid-template-rows: 75px 50px
+
+  position: sticky
+  top: -75px
+  z-index: 9999
 </style>

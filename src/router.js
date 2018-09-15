@@ -23,5 +23,8 @@ export default new Router({
       name: 'category',
       component: () => import('./views/CategoryPosts.vue')
     }
-  ]
+  ],
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  }
 })
