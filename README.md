@@ -1,4 +1,4 @@
-# test001
+# VueJS Challenge
 
 ## Project setup
 ```
@@ -13,9 +13,4 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```

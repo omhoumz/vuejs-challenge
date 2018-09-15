@@ -28,7 +28,7 @@ export default {
   flex-direction: row
   justify-content: center
   align-items: center
-  
+
   height: 35px
   position: fixed
   top: 0

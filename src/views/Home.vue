@@ -58,7 +58,7 @@ export default {
         .catch(error => console.error(error))
     },
     loadMorePosts () {
-      if ( this.currentPageNumber > this.pagesNumber ) {
+      if (this.currentPageNumber > this.pagesNumber) {
         return
       }
 
