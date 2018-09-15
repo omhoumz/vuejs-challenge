@@ -29,11 +29,11 @@ export default {
 
   a
     display: flex
-    height: 100%
 
     .logo
       margin: auto
-      height: 55%
+      height: 40px
+      width: auto
 
   .menu-icon
     height: 21px

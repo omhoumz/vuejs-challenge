@@ -26,6 +26,7 @@ export default {
     fetch('http://femme.nextmedia.ma/api/get_recent_posts/')
       .then(data => data.json())
       .then(response => {
+        // console.log(response)
         this.posts = response.posts.map(post => ({
           id: post.id,
           postLink: '/post/' + post.id,
@@ -58,7 +59,7 @@ export default {
     font-size: 2rem
     outline-color: transparent
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.13)
-    transition: box-shadow .1.8s cubic-bezier(0.18, 0.89, 0.32, 1.28)
+    transition: box-shadow .19s cubic-bezier(0.18, 0.89, 0.32, 1.28)
 
     &:focus
       box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.13)
